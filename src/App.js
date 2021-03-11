@@ -1,6 +1,10 @@
-
 import React from 'react';
 import './App.css';
+
+let i=0;
+const counter = () => {
+  i++;
+}
 
 class App extends React.Component {
   state = {
@@ -13,10 +17,14 @@ class App extends React.Component {
 
   handleClick = () => this.setState ({show:!this.state.show});
 
-  render() {
-    //console.log(this.state.show);
+  componentDidMount() {
+    setInterval(counter, 1000);
+  }
+
+  render() {  
     return(
       <div className="App" >
+        
         <h1>My User Profile</h1>
         {
           this.state.show && 
@@ -29,6 +37,7 @@ class App extends React.Component {
         }
         
         <button onClick={this.handleClick}>Click here to hide or show my profile</button>
+        <p>{i} sec</p>
       </div>
     )
   }
